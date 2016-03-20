@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Color -->
+    <color name="colorPrimary">#43A047</color>
+    <!-- Light Primary Color -->
+    <color name="colorLightPrimary">#81C784</color>
+    <!-- Primary Dark Color -->
+    <color name="colorPrimaryDark">#2E7D32</color>
+    <!-- Accent Color -->
+    <color name="colorAccent">#FF9100</color>
+    <!-- Primary Text Color -->
+    <color name="colorPrimaryText">#212121</color>
+    <!-- Secondary Text Color -->
+    <color name="colorSecondaryText">#757575</color>
+    <!-- Divider Color -->
+    <color name="colorDivider">#bdbdbd</color>
+
+    <!-- List Background Color -->
+    <color name="colorListSummary">#FFFFFF</color>
+
+    <!-- Income Text Color -->
+    <color name="colorIncomeText">#43A047</color>
+    <!-- Expense Text Color -->
+    <color name="colorExpenseText">#E53935</color>
+
+    <!-- Icon Active Color -->
+    <color name="colorIconActive">#8A000000</color>
+    <!-- Icon Inactive Color -->
+    <color name="colorIconInactive">#42000000</color>
+</resources>
