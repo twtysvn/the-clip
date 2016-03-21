@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.apps27.dough.moneyclip.NewRecordActivity">
+    <item
+        android:id="@+id/action_expense"
+        android:orderInCategory="100"
+        android:title="@string/action_expense"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_income"
+        android:orderInCategory="100"
+        android:title="@string/action_income"
+        app:showAsAction="never" />
+</menu>
