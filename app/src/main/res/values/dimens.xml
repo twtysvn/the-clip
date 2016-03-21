@@ -6,5 +6,6 @@
 
     <dimen name="text_display1">34sp</dimen>
     <dimen name="text_subheading">16sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

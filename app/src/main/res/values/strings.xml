@@ -14,4 +14,10 @@
     <string name="pref_user_key" translatable="false">user</string>
     <string name="pref_user_default" translatable="false">Ionut-Madalin Vilcu</string>
 
+    <!-- New Record -->
+    <string name="title_activity_new_record">New Record</string>
+    <string name="action_expense">Expense</string>
+    <string name="action_income">Income</string>
+
+
 </resources>
