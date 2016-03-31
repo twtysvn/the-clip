@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class RecordsNewActivity extends AppCompatActivity {
@@ -29,6 +31,8 @@ public class RecordsNewActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,21 @@ public class RecordsNewActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+
     }
+/*
+    //selecting an item from dropdown
+   // @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        //
+    }
+    */
 
 /*
     @Override
@@ -99,6 +117,7 @@ public class RecordsNewActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             int screenNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             String layoutName = "";
+            String[] string_array = {"unu","doi","trei"};
 
             switch (screenNumber) {
                 case 1:
@@ -108,7 +127,19 @@ public class RecordsNewActivity extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager) getContext().
                             getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT);*/
+
+                    //Spinner
+                    Spinner spinner = (Spinner) rootView1.findViewById(R.id.new_record_type);
+                    //spinner.setOnItemSelectedListener(this);
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_spinner_item, string_array);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+
                     return rootView1;
+
+
                 case 2:
                     View rootView2 =
                             inflater.inflate(R.layout.fragment_records_new_2, container, false);

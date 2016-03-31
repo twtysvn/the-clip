@@ -20,5 +20,16 @@
     <string name="title_activity_records_new">Add Record</string>
     <string name="section_format">Tabul: %1$d</string>
 
+    <string-array name="records_type_array">
+        <item>Plata generala 1</item>
+        <item>Plata generala 2</item>
+        <item>Plata generala 3</item>
+        <item>Plata generala 4</item>
+        <item>Plata generala 5</item>
+        <item>Plata generala 6</item>
+        <item>Plata generala 7</item>
+        <item>Plata generala 8</item>
+    </string-array>
+
 
 </resources>
