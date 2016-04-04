@@ -1,5 +1,6 @@
 package com.apps27.dough.moneyclip;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class RecordsNewActivity extends AppCompatActivity {
 
@@ -117,11 +125,18 @@ public class RecordsNewActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             int screenNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             String layoutName = "";
-            String[] string_array = {"unu","doi","trei"};
+
+            Resources res = getResources();
+            String[] string_array = res.getStringArray(R.array.records_type_array);
+
+            Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.US);
+            String formatedDate = sdf.format(cal.getTime());
+
 
             switch (screenNumber) {
                 case 1:
-                    View rootView1 =
+                    final View rootView1 =
                             inflater.inflate(R.layout.fragment_records_new, container, false);
                     /*EditText yourEditText= (EditText) rootView1.findViewById(R.id.expense_amount);
                     InputMethodManager imm = (InputMethodManager) getContext().
@@ -129,13 +144,40 @@ public class RecordsNewActivity extends AppCompatActivity {
                     imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT);*/
 
                     //Spinner
-                    Spinner spinner = (Spinner) rootView1.findViewById(R.id.new_record_type);
+                    final Spinner spinner = (Spinner) rootView1.findViewById(R.id.new_record_type);
                     //spinner.setOnItemSelectedListener(this);
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, string_array);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
+
+                    //display current date and time
+                    final TextView dateTextView = (TextView) rootView1.findViewById(R.id.new_date);
+                    dateTextView.setText(formatedDate);
+
+                    Button addButton = (Button) rootView1.findViewById(R.id.add_button);
+                    addButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            String dateTimeString = dateTextView.getText().toString();
+
+                            TextView amountTextView = (TextView) rootView1.findViewById(R.id.expense_amount);
+                            String amount = amountTextView.getText().toString();
+
+                            String spinnerText = spinner.getSelectedItem().toString();
+
+                            RecordsDBAdapter mRecords = new RecordsDBAdapter(getActivity());
+                            mRecords.open();
+                            mRecords.createRecord(dateTimeString, amount, spinnerText);
+                            Toast.makeText(getActivity(),
+                                    "Just spent " + amount + " on " + spinnerText + ", stupid!",
+                                    Toast.LENGTH_LONG).show();
+                            getActivity().finish();
+                        }
+                    });
+
 
                     return rootView1;
 

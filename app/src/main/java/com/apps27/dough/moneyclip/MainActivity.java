@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new RecordsDBAdapter(this);
         dbHelper.open();
-
+/*
         dbHelper.deleteAllRecords();
-        dbHelper.insertSomeRecords();
+        dbHelper.insertSomeRecords();*/
 
         displayListView();
 
@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
         TextView userTextView = new TextView(this);
         userTextView = (TextView)findViewById(R.id.summary_name);
         userTextView.setText(user);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        displayListView();
     }
 
     @Override
@@ -109,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         dataAdapter = new SimpleCursorAdapter(
                 this, R.layout.list_last_activity,cursor, columnsFrom, viewsTo, 0);
+        dataAdapter.notifyDataSetChanged();
 
         final ListView listView = (ListView) findViewById(R.id.listview_last_activity);
         listView.setAdapter(dataAdapter);
