@@ -135,6 +135,7 @@ public class RecordsNewActivity extends AppCompatActivity {
 
 
             switch (screenNumber) {
+                //expense screen
                 case 1:
                     final View rootView1 =
                             inflater.inflate(R.layout.fragment_records_new, container, false);
@@ -156,28 +157,38 @@ public class RecordsNewActivity extends AppCompatActivity {
                     final TextView dateTextView = (TextView) rootView1.findViewById(R.id.new_date);
                     dateTextView.setText(formatedDate);
 
+                    //action on button
                     Button addButton = (Button) rootView1.findViewById(R.id.add_button);
                     addButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
-                            String dateTimeString = dateTextView.getText().toString();
-
-                            TextView amountTextView = (TextView) rootView1.findViewById(R.id.expense_amount);
+                            //get text from amount
+                            TextView amountTextView = (TextView)
+                                    rootView1.findViewById(R.id.expense_amount);
                             String amount = amountTextView.getText().toString();
-
+                            //compare if value is inserted or blank
+                            if (amount.equals("")) {
+                                Toast.makeText(getActivity(),
+                                        "Spent nothing? Wallet says otherwise, liar!",
+                                        Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            //get date and time
+                            String dateTimeString = dateTextView.getText().toString();
+                            //get dropdown list item
                             String spinnerText = spinner.getSelectedItem().toString();
-
+                            //open db and write values
                             RecordsDBAdapter mRecords = new RecordsDBAdapter(getActivity());
                             mRecords.open();
                             mRecords.createRecord(dateTimeString, amount, spinnerText);
+                            //show toast
                             Toast.makeText(getActivity(),
                                     "Just spent " + amount + " on " + spinnerText + ", stupid!",
                                     Toast.LENGTH_LONG).show();
+                            //close screen
                             getActivity().finish();
                         }
                     });
-
 
                     return rootView1;
 

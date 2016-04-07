@@ -1,75 +1,89 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.apps27.dough.moneyclip.RecordsNewActivity$PlaceholderFragment">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0">
+        android:layout_height="match_parent"
+        tools:context="com.apps27.dough.moneyclip.RecordsNewActivity$PlaceholderFragment">
 
-        <EditText
-            android:id="@+id/expense_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="0dp"
-            android:inputType="number|numberDecimal"
-            android:cursorVisible="false"
-            android:hint="0.00"
-            android:focusableInTouchMode="true"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="56sp" />
+        <RelativeLayout
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/summary_unit"
-            android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/expense_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:cursorVisible="true"
+                android:focusableInTouchMode="true"
+                android:hint="0.00"
+                android:inputType="number|numberDecimal|numberSigned"
+                android:padding="0dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="56sp" />
+
+            <TextView
+                android:id="@+id/summary_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/expense_amount"
+                android:layout_toRightOf="@+id/expense_amount"
+                android:paddingLeft="@dimen/minimum_margin"
+                android:paddingRight="@dimen/minimum_margin"
+                android:text="@string/currency"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/expense_amount"
-            android:layout_toRightOf="@+id/expense_amount"
-            android:paddingLeft="@dimen/minimum_margin"
-            android:paddingRight="@dimen/minimum_margin"
-            android:text="@string/currency"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="24sp" />
+            android:layout_below="@+id/amount"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:id="@+id/new_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="21/12/2012 12:12"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/new_record_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"></Spinner>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/activity_vertical_margin">
-
-        <TextView
-            android:id="@+id/new_date"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:text="21/12/2012 12:12"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="14sp" />
-
-        <Spinner
-            android:id="@+id/new_record_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4">
-        </Spinner>
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/add_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:layout_above="@+id/empty_view"
+        android:background="@color/colorExpenseText"
+        android:text="Add"
+        android:textColor="@color/colorButtonColored" />
 
+    <View
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true">
 
-</LinearLayout>
+    </View>
+</RelativeLayout>

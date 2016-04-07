@@ -18,6 +18,9 @@
     <!-- List Background Color -->
     <color name="colorListSummary">#FFFFFF</color>
 
+    <!-- List Background Color -->
+    <color name="colorButtonColored">#FFFFFF</color>
+
     <!-- Income Text Color -->
     <color name="colorIncomeText">#43A047</color>
     <!-- Expense Text Color -->

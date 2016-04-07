@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new RecordsDBAdapter(this);
         dbHelper.open();
-/*
-        dbHelper.deleteAllRecords();
-        dbHelper.insertSomeRecords();*/
+
+        //dbHelper.deleteAllRecords();
+        //dbHelper.insertSomeRecords();
 
         displayListView();
 
@@ -120,6 +121,34 @@ public class MainActivity extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.listview_last_activity);
         listView.setAdapter(dataAdapter);
+
+        //color amount text in list
+        SimpleCursorAdapter.ViewBinder binder = new SimpleCursorAdapter.ViewBinder() {
+
+            @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                /*String[] columns = cursor.getColumnNames();
+                Log.d("main",columns[2]);*/
+                int getIndex = cursor.getColumnIndex("amount");
+                String amountString = cursor.getString(getIndex);
+                float amountFloat = Float.parseFloat(amountString);
+                int viewId = view.getId();
+                if (viewId == R.id.text_plus_amount){
+                    TextView tv = (TextView) view;
+                    tv.setText(amountString);
+                    tv.setTextColor(ContextCompat.getColor(getApplicationContext(),
+                            R.color.colorExpenseText));
+                    if (amountFloat >= 0) {
+                        tv.setTextColor(ContextCompat.getColor(getApplicationContext(),
+                                R.color.colorIncomeText));
+                    }
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        dataAdapter.setViewBinder(binder);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
